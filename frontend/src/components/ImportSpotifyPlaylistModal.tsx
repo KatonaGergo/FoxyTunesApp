@@ -38,7 +38,6 @@ const steps = [
 const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({ open, onClose }) => {
   const [step, setStep] = useState(0);
   const [selectedPlaylist, setSelectedPlaylist] = useState<string | null>(null);
-  const [artwork, setArtwork] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [authUrl, setAuthUrl] = useState<string | null>(null);
   const [authCode, setAuthCode] = useState("");
@@ -54,6 +53,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState(false);
   const [copyButtonText, setCopyButtonText] = useState("Copy URL");
+  const [downloadPath, setDownloadPath] = useState("");
 
   // Placeholder playlists for UI
   // const mockPlaylists = [
@@ -305,29 +305,30 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
         )}
         {step === 2 && (
           <div className="flex flex-col gap-4">
-            <p className="text-white">Upload album artwork:</p>
+            <p className="text-white">Choose a download path for your playlist:</p>
             <input
-              type="file"
-              accept="image/*"
-              className="block w-full text-sm text-zinc-200 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-light-black file:text-white hover:file:bg-dark-black"
-              onChange={e => setArtwork(e.target.files?.[0] || null)}
+              type="text"
+              className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={downloadPath}
+              onChange={e => setDownloadPath(e.target.value)}
+              placeholder="/absolute/path/on/server"
             />
-            {artwork && <p className="text-green-400">Selected: {artwork.name}</p>}
             <button
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition disabled:opacity-50"
-              disabled={!artwork || importLoading}
+              disabled={!downloadPath || importLoading}
               onClick={async () => {
                 setImportLoading(true);
                 setImportError(null);
                 setImportSuccess(false);
-                const formData = new FormData();
-                formData.append('userId', email);
-                formData.append('playlistId', selectedPlaylist || '');
-                formData.append('artwork', artwork!);
                 try {
                   const res = await fetch('/api/spotify/import', {
                     method: 'POST',
-                    body: formData,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      userId: email,
+                      playlistName: Object.keys(playlists).find(name => playlists[name] === selectedPlaylist),
+                      downloadPath,
+                    }),
                   });
                   const data = await res.json();
                   if (data.success) {

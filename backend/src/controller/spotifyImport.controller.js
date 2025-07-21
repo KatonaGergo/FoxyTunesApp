@@ -100,107 +100,42 @@ export const getPlaylists = (req, res) => {
 };
 
 export const importPlaylist = async (req, res) => {
-  const { userId, playlistId } = req.body;
-  const artwork = req.file;
+  const { userId, playlistName, downloadPath } = req.body;
 
-  if (!userId || !playlistId || !artwork) {
-    return res.status(400).json({ error: 'userId, playlistId, and artwork are required.' });
+  if (!userId || !playlistName || !downloadPath) {
+    return res.status(400).json({ error: 'userId, playlistName, and downloadPath are required.' });
   }
 
   try {
-    // 1. Save artwork locally
-    let originalArtworkFilename = artwork.originalname || artwork.filename || 'artwork.jpg';
-    const frontendArtworkDir = path.resolve(__dirname, '../../../../frontend/public/song_artwork');
-    if (!fs.existsSync(frontendArtworkDir)) {
-      fs.mkdirSync(frontendArtworkDir, { recursive: true });
-    }
-    let artworkDestPath = path.join(frontendArtworkDir, originalArtworkFilename);
-    if (fs.existsSync(artworkDestPath)) {
-      const ext = path.extname(originalArtworkFilename);
-      const base = path.basename(originalArtworkFilename, ext);
-      let counter = 1;
-      let newFilename;
-      do {
-        newFilename = `${base}_${counter}${ext}`;
-        artworkDestPath = path.join(frontendArtworkDir, newFilename);
-        counter++;
-      } while (fs.existsSync(artworkDestPath));
-      originalArtworkFilename = newFilename;
-    }
-    fs.writeFileSync(artworkDestPath, artwork.buffer);
-    const artworkUrl = `/song_artwork/${originalArtworkFilename}`;
-
-    // 2. Call Python script to download playlist for this user
+    // 1. Call Python script to download playlist for this user
     const scriptPath = path.resolve(__dirname, '../../../spotify-downloader/main.py');
-    let playlistName = '';
-    let artistName = 'Unknown';
-    let downloadFolder = '';
     await new Promise((resolve, reject) => {
-      const python = spawn('python', [scriptPath, userId, '--download-playlist', playlistId], {
+      const python = spawn('python', [scriptPath, userId, downloadPath, playlistName], {
         env: { ...process.env },
       });
       let output = '';
       python.stdout.on('data', (data) => {
-        const text = data.toString();
-        output += text;
-        const match = text.match(/Downloaded \d+ tracks for playlist (.+)/);
-        if (match) {
-          playlistName = match[1].trim();
-        }
+        output += data.toString();
       });
       python.stderr.on('data', (data) => {
         console.error(`Python stderr: ${data}`);
       });
       python.on('close', (code) => {
-        if (!playlistName) {
-          playlistName = playlistId;
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(new Error('Python script failed'));
         }
-        downloadFolder = path.join(process.cwd(), playlistName.replace(/ /g, '_'));
-        resolve();
       });
       python.on('error', (err) => {
         reject(err);
       });
     });
 
-    // 3. Read downloaded files and create album/songs in MongoDB
-    const files = fs.readdirSync(downloadFolder).filter(f => f.endsWith('.mp3'));
-    if (!files.length) {
-      return res.status(500).json({ error: 'No songs were downloaded.' });
-    }
+    // 2. (Optional) Scan the downloadPath/playlistName directory for downloaded files and update DB as needed
+    // ...
 
-    // Ensure frontend/public/songs exists
-    const frontendSongsDir = path.resolve(__dirname, '../../../../frontend/public/songs');
-    if (!fs.existsSync(frontendSongsDir)) {
-      fs.mkdirSync(frontendSongsDir, { recursive: true });
-    }
-
-    // Create album
-    const album = await Album.create({
-      title: playlistName,
-      artist: artistName,
-      imageUrl: artworkUrl,
-      songs: [],
-    });
-
-    // Copy files and create songs
-    for (const file of files) {
-      const srcPath = path.join(downloadFolder, file);
-      const destPath = path.join(frontendSongsDir, file);
-      fs.copyFileSync(srcPath, destPath);
-      const songTitle = path.basename(file, '.mp3');
-      const song = await Song.create({
-        title: songTitle,
-        artist: artistName,
-        album: album._id,
-        audioUrl: `/songs/${file}`,
-        localFilename: file
-      });
-      album.songs.push(song._id);
-    }
-    await album.save();
-
-    res.json({ success: true, albumId: album._id });
+    res.json({ success: true });
   } catch (error) {
     res.status(500).json({ error: 'Failed to import playlist', details: error.message });
   }
