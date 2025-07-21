@@ -1,0 +1,411 @@
+2025-07-13 10:03:27,715 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8888
+2025-07-13 10:03:27,715 - [33mPress CTRL+C to quit[0m
+2025-07-13 10:04:10,260 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8888
+2025-07-13 10:04:10,260 - [33mPress CTRL+C to quit[0m
+2025-07-13 10:06:18,975 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8888
+2025-07-13 10:06:18,975 - [33mPress CTRL+C to quit[0m
+2025-07-13 10:06:24,349 - 127.0.0.1 - - [13/Jul/2025 10:06:24] "GET /callback?code=AQDwNKs7sxKjRQvyGDaUNjhDpcfcLzujaowxv4o-v14VieTK0-Itw_A8CdAhPS9s6uYDorTawakpfjr-8c5huWk1kI1f13u26AVbA0_e07nCi7WxUwY18n68sdFeBbVPGb3dylyfkwy9nGAlfJWUGPOIGK20xXlwEcXA9DcP8BQDPCOQQQG21ls-r7qLVI2wBF7Z-_0KCR8NtbKplJlMR64iMKIjL7ZTvmbksFPLJ1ogDEYcq5k-v3xetZgPWUIquJt-qJqNc3DI HTTP/1.1" 200 -
+2025-07-13 10:06:24,421 - 127.0.0.1 - - [13/Jul/2025 10:06:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-13 10:06:51,480 - Downloading: Calling My Phone by Lil Tjay
+2025-07-13 10:06:54,123 - Downloading: Calling My Phone by Lil Tjay
+2025-07-13 10:06:56,808 - Downloading: Calling My Phone by Lil Tjay
+2025-07-13 10:07:25,038 - Downloading: Dance with Me by CORBAL
+2025-07-13 10:07:27,764 - Downloading: Dance with Me by CORBAL
+2025-07-13 10:07:30,459 - Downloading: Dance with Me by CORBAL
+2025-07-13 10:07:33,098 - Downloading: I'll Keep You Safe by sagun
+2025-07-13 10:07:35,784 - Downloading: I'll Keep You Safe by sagun
+2025-07-13 10:07:38,445 - Downloading: I'll Keep You Safe by sagun
+2025-07-13 10:07:41,041 - Downloading: One Dance by Shiloh Dynasty
+2025-07-13 10:07:43,725 - Downloading: One Dance by Shiloh Dynasty
+2025-07-13 10:07:46,474 - Downloading: One Dance by Shiloh Dynasty
+2025-07-13 10:07:49,212 - Downloading: i'm closing my eyes by potsu
+2025-07-13 10:07:51,940 - Downloading: i'm closing my eyes by potsu
+2025-07-13 10:07:55,104 - Downloading: i'm closing my eyes by potsu
+2025-07-13 10:07:57,956 - Downloading: Monday Loop by Tomppabeats
+2025-07-13 10:08:00,698 - Downloading: Monday Loop by Tomppabeats
+2025-07-13 10:08:03,369 - Downloading: Monday Loop by Tomppabeats
+2025-07-13 10:08:06,039 - Downloading: You're in My Head by moow
+2025-07-13 10:08:08,963 - Downloading: You're in My Head by moow
+2025-07-13 10:08:11,717 - Downloading: You're in My Head by moow
+2025-07-13 10:08:14,280 - Downloading: Sick of This by Just Big Hills
+2025-07-13 10:08:16,937 - Downloading: Sick of This by Just Big Hills
+2025-07-13 10:08:19,595 - Downloading: Sick of This by Just Big Hills
+2025-07-13 10:08:22,155 - Downloading: I'm So Alone by B\xd8JET
+2025-07-13 10:08:24,743 - Downloading: I'm So Alone by B\xd8JET
+2025-07-13 10:08:27,380 - Downloading: I'm So Alone by B\xd8JET
+2025-07-13 10:08:30,075 - Downloading: [oops] by potsu
+2025-07-13 10:08:32,711 - Downloading: [oops] by potsu
+2025-07-13 10:08:35,264 - Downloading: [oops] by potsu
+2025-07-13 10:08:37,762 - Downloading: 5:32pm by The Deli
+2025-07-13 10:08:40,455 - Downloading: 5:32pm by The Deli
+2025-07-13 10:08:43,180 - Downloading: 5:32pm by The Deli
+2025-07-13 10:08:45,784 - Downloading: Getsomerest/sleepwell by quickly, quickly
+2025-07-13 10:08:48,468 - Downloading: Getsomerest/sleepwell by quickly, quickly
+2025-07-13 10:08:51,205 - Downloading: Getsomerest/sleepwell by quickly, quickly
+2025-07-13 10:08:53,926 - Downloading: summer nights. by halberd
+2025-07-13 10:08:56,590 - Downloading: summer nights. by halberd
+2025-07-13 10:08:59,228 - Downloading: summer nights. by halberd
+2025-07-13 10:09:01,786 - Downloading: Jovial by keloqz
+2025-07-13 10:09:04,236 - Downloading: Jovial by keloqz
+2025-07-13 10:09:06,649 - Downloading: Jovial by keloqz
+2025-07-13 10:09:09,073 - Downloading: Losing Interest by itssvd
+2025-07-13 10:09:11,641 - Downloading: Losing Interest by itssvd
+2025-07-13 10:09:14,188 - Downloading: Losing Interest by itssvd
+2025-07-13 10:09:16,713 - Downloading: Love Is More Depressing Than Depression by prxz
+2025-07-13 10:09:19,334 - Downloading: Love Is More Depressing Than Depression by prxz
+2025-07-13 10:09:22,011 - Downloading: Love Is More Depressing Than Depression by prxz
+2025-07-13 10:09:24,676 - Downloading: Imagination by CORBAL
+2025-07-13 10:09:27,380 - Downloading: Imagination by CORBAL
+2025-07-13 10:09:30,025 - Downloading: Imagination by CORBAL
+2025-07-13 10:09:32,705 - Downloading: I'll Bite Your Soul by SHRK
+2025-07-13 10:09:35,404 - Downloading: I'll Bite Your Soul by SHRK
+2025-07-13 10:09:38,071 - Downloading: I'll Bite Your Soul by SHRK
+2025-07-13 10:09:40,757 - Downloading: Soft Skin by timmies
+2025-07-13 10:09:43,439 - Downloading: Soft Skin by timmies
+2025-07-13 10:09:46,103 - Downloading: Soft Skin by timmies
+2025-07-13 10:09:48,959 - Downloading: Can't Love Myself by Monty Datta
+2025-07-13 10:09:51,666 - Downloading: Can't Love Myself by Monty Datta
+2025-07-13 10:09:54,386 - Downloading: Can't Love Myself by Monty Datta
+2025-07-13 10:09:57,191 - Downloading: Love Again by itssvd
+2025-07-13 10:09:59,895 - Downloading: Love Again by itssvd
+2025-07-13 10:10:02,523 - Downloading: Love Again by itssvd
+2025-07-13 10:10:05,130 - Downloading: Bad Idea! by Shiloh Dynasty
+2025-07-13 10:10:07,931 - Downloading: Bad Idea! by Shiloh Dynasty
+2025-07-13 10:10:10,756 - Downloading: Bad Idea! by Shiloh Dynasty
+2025-07-13 10:10:13,453 - Downloading: Nobody Cares by Kina
+2025-07-13 10:10:16,088 - Downloading: Nobody Cares by Kina
+2025-07-13 10:10:18,721 - Downloading: Nobody Cares by Kina
+2025-07-13 10:10:21,340 - Downloading: Would That Make You Love Me? by SHRK
+2025-07-13 10:10:24,252 - Downloading: Would That Make You Love Me? by SHRK
+2025-07-13 10:10:27,099 - Downloading: Would That Make You Love Me? by SHRK
+2025-07-13 10:10:29,932 - Downloading: Tell Me Why I'm Waiting by timmies
+2025-07-13 10:10:32,652 - Downloading: Tell Me Why I'm Waiting by timmies
+2025-07-13 10:10:35,561 - Downloading: Tell Me Why I'm Waiting by timmies
+2025-07-13 10:10:38,326 - Downloading: You Can't Control My Heart by Shiloh Dynasty
+2025-07-13 10:10:41,142 - Downloading: You Can't Control My Heart by Shiloh Dynasty
+2025-07-13 10:10:44,173 - Downloading: You Can't Control My Heart by Shiloh Dynasty
+2025-07-13 10:10:46,869 - Downloading: You Are Loving by timmies
+2025-07-13 10:10:49,601 - Downloading: You Are Loving by timmies
+2025-07-13 10:10:52,256 - Downloading: You Are Loving by timmies
+2025-07-13 10:10:54,943 - Downloading: Baby You're Worth It by Kina
+2025-07-13 10:10:57,766 - Downloading: Baby You're Worth It by Kina
+2025-07-13 10:11:00,642 - Downloading: Baby You're Worth It by Kina
+2025-07-13 10:11:03,405 - Downloading: I'm Drunk And Confused by sagun
+2025-07-13 10:11:06,077 - Downloading: I'm Drunk And Confused by sagun
+2025-07-13 10:11:08,789 - Downloading: I'm Drunk And Confused by sagun
+2025-07-13 10:11:11,479 - Downloading: No I Don't Want, Just Anyone by Shiloh Dynasty
+2025-07-13 10:11:14,269 - Downloading: No I Don't Want, Just Anyone by Shiloh Dynasty
+2025-07-13 10:11:17,092 - Downloading: No I Don't Want, Just Anyone by Shiloh Dynasty
+2025-07-13 10:11:19,781 - Downloading: Cigarettes and Sex by prxz
+2025-07-13 10:11:22,526 - Downloading: Cigarettes and Sex by prxz
+2025-07-13 10:11:25,210 - Downloading: Cigarettes and Sex by prxz
+2025-07-13 10:11:27,872 - Downloading: falling down by Nohidea
+2025-07-13 10:11:30,591 - Downloading: falling down by Nohidea
+2025-07-13 10:11:33,195 - Downloading: falling down by Nohidea
+2025-07-13 10:11:35,767 - Downloading: I Don't Trust Nobody by Shiloh Dynasty
+2025-07-13 10:11:38,531 - Downloading: I Don't Trust Nobody by Shiloh Dynasty
+2025-07-13 10:11:41,183 - Downloading: I Don't Trust Nobody by Shiloh Dynasty
+2025-07-13 10:11:43,870 - Downloading: I Miss You by SHRK
+2025-07-13 10:11:46,680 - Downloading: I Miss You by SHRK
+2025-07-13 10:11:49,407 - Downloading: I Miss You by SHRK
+2025-07-13 10:11:52,143 - Downloading: Oblivion by Rufi-O
+2025-07-13 10:11:54,905 - Downloading: Oblivion by Rufi-O
+2025-07-13 10:11:57,695 - Downloading: Oblivion by Rufi-O
+2025-07-13 10:12:00,373 - Downloading: With Somebody Else by Monty Datta
+2025-07-13 10:12:03,096 - Downloading: With Somebody Else by Monty Datta
+2025-07-13 10:12:05,773 - Downloading: With Somebody Else by Monty Datta
+2025-07-13 10:12:08,664 - Downloading: Again by Shiloh Dynasty
+2025-07-13 10:12:11,384 - Downloading: Again by Shiloh Dynasty
+2025-07-13 10:12:14,066 - Downloading: Again by Shiloh Dynasty
+2025-07-13 10:12:17,007 - Downloading: Sorrows by XoXo7
+2025-07-13 10:12:19,432 - Downloading: Sorrows by XoXo7
+2025-07-13 10:12:21,862 - Downloading: Sorrows by XoXo7
+2025-07-13 10:12:24,308 - Downloading: Tell Me by Shiloh Dynasty
+2025-07-13 10:12:27,150 - Downloading: Tell Me by Shiloh Dynasty
+2025-07-13 10:12:29,887 - Downloading: Tell Me by Shiloh Dynasty
+2025-07-13 10:12:32,574 - Downloading: I Fall in Love, I'm Sorry by CORBAL
+2025-07-13 10:12:35,314 - Downloading: I Fall in Love, I'm Sorry by CORBAL
+2025-07-13 10:12:38,078 - Downloading: I Fall in Love, I'm Sorry by CORBAL
+2025-07-13 10:12:40,892 - Downloading: Your Love Makes Me Depressed by CORBAL
+2025-07-13 10:12:43,659 - Downloading: Your Love Makes Me Depressed by CORBAL
+2025-07-13 10:12:46,380 - Downloading: Your Love Makes Me Depressed by CORBAL
+2025-07-13 10:12:49,190 - Downloading: You Know That I Don't Play by CORBAL
+2025-07-13 10:12:51,931 - Downloading: You Know That I Don't Play by CORBAL
+2025-07-13 10:12:54,564 - Downloading: You Know That I Don't Play by CORBAL
+2025-07-13 10:12:57,296 - Downloading: Tried to Be Patient with You by CORBAL
+2025-07-13 10:13:00,110 - Downloading: Tried to Be Patient with You by CORBAL
+2025-07-13 10:13:02,775 - Downloading: Tried to Be Patient with You by CORBAL
+2025-07-13 10:13:05,508 - Downloading: Love Is the Same as Sadness by CORBAL
+2025-07-13 10:13:08,337 - Downloading: Love Is the Same as Sadness by CORBAL
+2025-07-13 10:13:11,337 - Downloading: Love Is the Same as Sadness by CORBAL
+2025-07-13 10:13:14,115 - Downloading: the forest by Linearwave
+2025-07-13 10:13:16,944 - Downloading: the forest by Linearwave
+2025-07-13 10:13:19,587 - Downloading: the forest by Linearwave
+2025-07-13 10:13:23,240 - Downloading: heartbroken by CORBAL
+2025-07-13 10:13:25,773 - Downloading: heartbroken by CORBAL
+2025-07-13 10:13:28,458 - Downloading: heartbroken by CORBAL
+2025-07-13 10:13:31,016 - Downloading: her mind by itssvd
+2025-07-13 10:13:33,592 - Downloading: her mind by itssvd
+2025-07-13 10:13:36,189 - Downloading: her mind by itssvd
+2025-07-13 10:13:38,767 - Downloading: phone call by itssvd
+2025-07-13 10:13:41,371 - Downloading: phone call by itssvd
+2025-07-13 10:13:43,986 - Downloading: phone call by itssvd
+2025-07-13 10:13:46,548 - Downloading: for long by itssvd
+2025-07-13 10:13:49,139 - Downloading: for long by itssvd
+2025-07-13 10:13:51,680 - Downloading: for long by itssvd
+2025-07-13 10:13:54,233 - Downloading: love myself by itssvd
+2025-07-13 10:13:56,910 - Downloading: love myself by itssvd
+2025-07-13 10:13:59,578 - Downloading: love myself by itssvd
+2025-07-13 10:14:02,394 - Downloading: coffee and cigarettes by itssvd
+2025-07-13 10:14:05,198 - Downloading: coffee and cigarettes by itssvd
+2025-07-13 10:14:07,929 - Downloading: coffee and cigarettes by itssvd
+2025-07-13 10:14:10,635 - Downloading: i luv that girl by itssvd
+2025-07-13 10:14:13,321 - Downloading: i luv that girl by itssvd
+2025-07-13 10:14:15,940 - Downloading: i luv that girl by itssvd
+2025-07-13 10:14:18,571 - Downloading: cold nights by itssvd
+2025-07-13 10:14:21,262 - Downloading: cold nights by itssvd
+2025-07-13 10:14:23,838 - Downloading: cold nights by itssvd
+2025-07-13 10:14:26,475 - Downloading: i'm lonely now by itssvd
+2025-07-13 10:14:29,123 - Downloading: i'm lonely now by itssvd
+2025-07-13 10:14:31,798 - Downloading: i'm lonely now by itssvd
+2025-07-13 10:14:34,505 - Downloading: i don't feel part of the world anymore by itssvd
+2025-07-13 10:14:37,174 - Downloading: i don't feel part of the world anymore by itssvd
+2025-07-13 10:14:39,779 - Downloading: i don't feel part of the world anymore by itssvd
+2025-07-13 10:14:42,447 - Downloading: you're just playing with my heart by itssvd
+2025-07-13 10:14:45,181 - Downloading: you're just playing with my heart by itssvd
+2025-07-13 10:14:47,958 - Downloading: you're just playing with my heart by itssvd
+2025-07-13 10:14:50,680 - Downloading: this really makes me wanna die by itssvd
+2025-07-13 10:14:53,183 - Downloading: this really makes me wanna die by itssvd
+2025-07-13 10:14:55,718 - Downloading: this really makes me wanna die by itssvd
+2025-07-13 10:14:58,351 - Downloading: this is a suicide note by itssvd
+2025-07-13 10:15:00,871 - Downloading: this is a suicide note by itssvd
+2025-07-13 10:15:03,293 - Downloading: this is a suicide note by itssvd
+2025-07-13 10:15:05,719 - Downloading: Matters by itssvd
+2025-07-13 10:15:08,382 - Downloading: Matters by itssvd
+2025-07-13 10:15:10,981 - Downloading: Matters by itssvd
+2025-07-13 10:15:13,615 - Downloading: Broken Heart by itssvd
+2025-07-13 10:15:16,385 - Downloading: Broken Heart by itssvd
+2025-07-13 10:15:19,075 - Downloading: Broken Heart by itssvd
+2025-07-13 10:15:21,694 - Downloading: End by itssvd
+2025-07-13 10:15:24,305 - Downloading: End by itssvd
+2025-07-13 10:15:26,932 - Downloading: End by itssvd
+2025-07-13 10:15:29,530 - Downloading: Interlude (When All Starts) by itssvd
+2025-07-13 10:15:32,186 - Downloading: Interlude (When All Starts) by itssvd
+2025-07-13 10:15:34,846 - Downloading: Interlude (When All Starts) by itssvd
+2025-07-13 10:15:37,591 - Downloading: Love Hurts by itssvd
+2025-07-13 10:15:40,199 - Downloading: Love Hurts by itssvd
+2025-07-13 10:15:42,893 - Downloading: Love Hurts by itssvd
+2025-07-13 10:15:45,482 - Downloading: Loving You by itssvd
+2025-07-13 10:15:48,150 - Downloading: Loving You by itssvd
+2025-07-13 10:15:50,754 - Downloading: Loving You by itssvd
+2025-07-13 10:15:53,315 - Downloading: Obsession by itssvd
+2025-07-13 10:15:55,938 - Downloading: Obsession by itssvd
+2025-07-13 10:15:58,569 - Downloading: Obsession by itssvd
+2025-07-13 10:16:01,158 - Downloading: among the trees by Arden Records
+2025-07-13 10:16:03,860 - Downloading: among the trees by Arden Records
+2025-07-13 10:16:06,556 - Downloading: among the trees by Arden Records
+2025-07-13 10:16:09,264 - Downloading: worst day by sagun
+2025-07-13 10:16:11,926 - Downloading: worst day by sagun
+2025-07-13 10:16:14,600 - Downloading: worst day by sagun
+2025-07-13 10:16:17,201 - Downloading: rains by sagun
+2025-07-13 10:16:19,919 - Downloading: rains by sagun
+2025-07-13 10:16:22,641 - Downloading: rains by sagun
+2025-07-13 10:16:25,367 - Downloading: lost in tokyo (feat. Shalfi) by sagun
+2025-07-13 10:16:28,070 - Downloading: lost in tokyo (feat. Shalfi) by sagun
+2025-07-13 10:16:30,703 - Downloading: lost in tokyo (feat. Shalfi) by sagun
+2025-07-13 10:16:33,419 - Downloading: you're not like everyone else by sagun
+2025-07-13 10:16:36,105 - Downloading: you're not like everyone else by sagun
+2025-07-13 10:16:38,810 - Downloading: you're not like everyone else by sagun
+2025-07-13 10:16:41,467 - Downloading: i don't want to say too much by sagun
+2025-07-13 10:16:44,257 - Downloading: i don't want to say too much by sagun
+2025-07-13 10:16:46,885 - Downloading: i don't want to say too much by sagun
+2025-07-13 10:16:49,582 - Downloading: Is It True? by sagun
+2025-07-13 10:16:52,246 - Downloading: Is It True? by sagun
+2025-07-13 10:16:54,835 - Downloading: Is It True? by sagun
+2025-07-13 10:16:57,532 - Downloading: clouds by Arden Records
+2025-07-13 10:17:00,169 - Downloading: clouds by Arden Records
+2025-07-13 10:17:02,730 - Downloading: clouds by Arden Records
+2025-07-13 10:17:05,274 - Downloading: valley by Arden Records
+2025-07-13 10:17:07,976 - Downloading: valley by Arden Records
+2025-07-13 10:17:10,670 - Downloading: valley by Arden Records
+2025-07-13 10:17:13,414 - Downloading: voyage by Arden Records
+2025-07-13 10:17:16,127 - Downloading: voyage by Arden Records
+2025-07-13 10:17:18,692 - Downloading: voyage by Arden Records
+2025-07-13 10:17:21,245 - Downloading: Arden - pecna Remix by Arden Records
+2025-07-13 10:17:23,940 - Downloading: Arden - pecna Remix by Arden Records
+2025-07-13 10:17:26,511 - Downloading: Arden - pecna Remix by Arden Records
+2025-07-13 10:17:29,153 - Downloading: say (feat. Elyahu) by sagun
+2025-07-13 10:17:31,748 - Downloading: say (feat. Elyahu) by sagun
+2025-07-13 10:17:34,401 - Downloading: say (feat. Elyahu) by sagun
+2025-07-13 10:17:37,064 - Downloading: come alive (feat. Pink Sweat$) by sagun
+2025-07-13 10:17:39,789 - Downloading: come alive (feat. Pink Sweat$) by sagun
+2025-07-13 10:17:42,426 - Downloading: come alive (feat. Pink Sweat$) by sagun
+2025-07-13 10:17:45,111 - Downloading: soleil by sagun
+2025-07-13 10:17:47,672 - Downloading: soleil by sagun
+2025-07-13 10:17:50,309 - Downloading: soleil by sagun
+2025-07-13 10:17:52,820 - Downloading: fast life by sagun
+2025-07-13 10:17:55,477 - Downloading: fast life by sagun
+2025-07-13 10:17:58,034 - Downloading: fast life by sagun
+2025-07-13 10:18:00,606 - Downloading: alpenglow by sagun
+2025-07-13 10:18:03,191 - Downloading: alpenglow by sagun
+2025-07-13 10:18:05,743 - Downloading: alpenglow by sagun
+2025-07-13 10:18:08,339 - Downloading: come alive by sagun
+2025-07-13 10:18:10,982 - Downloading: come alive by sagun
+2025-07-13 10:18:13,554 - Downloading: come alive by sagun
+2025-07-13 10:18:16,243 - Downloading: sidewalk by sagun
+2025-07-13 10:18:18,902 - Downloading: sidewalk by sagun
+2025-07-13 10:18:21,531 - Downloading: sidewalk by sagun
+2025-07-13 10:18:24,215 - Downloading: circles by sagun
+2025-07-13 10:18:26,901 - Downloading: circles by sagun
+2025-07-13 10:18:29,629 - Downloading: circles by sagun
+2025-07-13 10:18:32,587 - Downloading: surface by sagun
+2025-07-13 10:18:35,219 - Downloading: surface by sagun
+2025-07-13 10:18:37,724 - Downloading: surface by sagun
+2025-07-13 10:18:40,380 - Downloading: 8 hours by sagun
+2025-07-13 10:18:43,011 - Downloading: 8 hours by sagun
+2025-07-13 10:18:45,578 - Downloading: 8 hours by sagun
+2025-07-13 10:18:48,319 - Downloading: in the ocean by sagun
+2025-07-13 10:18:53,051 - Downloading: in the ocean by sagun
+2025-07-13 10:18:55,789 - Downloading: in the ocean by sagun
+2025-07-13 10:18:58,440 - Downloading: waves by sagun
+2025-07-13 10:19:01,104 - Downloading: waves by sagun
+2025-07-13 10:19:03,768 - Downloading: waves by sagun
+2025-07-13 10:19:06,323 - Downloading: high by sagun
+2025-07-13 10:19:09,380 - Downloading: high by sagun
+2025-07-13 10:19:11,944 - Downloading: high by sagun
+2025-07-13 10:19:14,474 - Downloading: Waka Flocka by sagun
+2025-07-13 10:19:16,989 - Downloading: Waka Flocka by sagun
+2025-07-13 10:19:19,562 - Downloading: Waka Flocka by sagun
+2025-07-13 10:19:22,111 - Downloading: lustin' on you by sagun
+2025-07-13 10:19:24,833 - Downloading: lustin' on you by sagun
+2025-07-13 10:19:27,474 - Downloading: lustin' on you by sagun
+2025-07-13 10:19:30,061 - Downloading: fallin' back by sagun
+2025-07-13 10:19:32,685 - Downloading: fallin' back by sagun
+2025-07-13 10:19:35,363 - Downloading: fallin' back by sagun
+2025-07-13 10:19:37,973 - Downloading: go off again by sagun
+2025-07-13 10:19:40,847 - Downloading: go off again by sagun
+2025-07-13 10:19:43,599 - Downloading: go off again by sagun
+2025-07-13 10:19:46,349 - Downloading: tell no lies by sagun
+2025-07-13 10:19:49,038 - Downloading: tell no lies by sagun
+2025-07-13 10:19:51,595 - Downloading: tell no lies by sagun
+2025-07-13 10:19:54,255 - Downloading: we thought you were dead by sagun
+2025-07-13 10:19:56,930 - Downloading: we thought you were dead by sagun
+2025-07-13 10:19:59,613 - Downloading: we thought you were dead by sagun
+2025-07-13 10:20:02,241 - Downloading: Waiting for You (Interlude) by prxz
+2025-07-13 10:20:04,806 - Downloading: Waiting for You (Interlude) by prxz
+2025-07-13 10:20:07,449 - Downloading: Waiting for You (Interlude) by prxz
+2025-07-13 10:20:10,039 - Downloading: Homesick by softy
+2025-07-13 10:20:12,607 - Downloading: Homesick by softy
+2025-07-13 10:20:15,234 - Downloading: Homesick by softy
+2025-07-13 10:20:17,887 - Downloading: Wake Up by Aylior
+2025-07-13 10:20:20,530 - Downloading: Wake Up by Aylior
+2025-07-13 10:20:23,221 - Downloading: Wake Up by Aylior
+2025-07-13 10:20:25,813 - Downloading: Sleepy Little One by Kupla
+2025-07-13 10:20:28,390 - Downloading: Sleepy Little One by Kupla
+2025-07-13 10:20:31,055 - Downloading: Sleepy Little One by Kupla
+2025-07-13 10:20:33,587 - Downloading: Missing You by Purrple Cat
+2025-07-13 10:20:36,250 - Downloading: Missing You by Purrple Cat
+2025-07-13 10:20:38,845 - Downloading: Missing You by Purrple Cat
+2025-07-13 10:20:41,501 - Downloading: It Started Raining as I Was Walking Home by The Delirious Artist
+2025-07-13 10:20:44,218 - Downloading: It Started Raining as I Was Walking Home by The Delirious Artist
+2025-07-13 10:20:46,876 - Downloading: It Started Raining as I Was Walking Home by The Delirious Artist
+2025-07-13 10:20:49,409 - Downloading: Maxell by Mund
+2025-07-13 10:20:51,942 - Downloading: Maxell by Mund
+2025-07-13 10:20:54,549 - Downloading: Maxell by Mund
+2025-07-13 10:20:57,110 - Downloading: Hawaii by Cosmonkey
+2025-07-13 10:20:59,763 - Downloading: Hawaii by Cosmonkey
+2025-07-13 10:21:02,453 - Downloading: Hawaii by Cosmonkey
+2025-07-13 10:21:04,954 - Downloading: School Rooftop by Hisohkah
+2025-07-13 10:21:07,593 - Downloading: School Rooftop by Hisohkah
+2025-07-13 10:21:10,275 - Downloading: School Rooftop by Hisohkah
+2025-07-13 10:21:12,903 - Downloading: Twin Peaks by Druid
+2025-07-13 10:21:15,723 - Downloading: Twin Peaks by Druid
+2025-07-13 10:21:18,315 - Downloading: Twin Peaks by Druid
+2025-07-13 10:21:20,951 - Downloading: Distracted by Smith Beats
+2025-07-13 10:21:23,735 - Downloading: Distracted by Smith Beats
+2025-07-13 10:21:26,508 - Downloading: Distracted by Smith Beats
+2025-07-13 10:21:29,171 - Downloading: Lonely Nights by Yasumu
+2025-07-13 10:21:31,834 - Downloading: Lonely Nights by Yasumu
+2025-07-13 10:21:34,460 - Downloading: Lonely Nights by Yasumu
+2025-07-13 10:21:36,983 - Downloading: Yesterday by Neotic
+2025-07-13 10:21:39,592 - Downloading: Yesterday by Neotic
+2025-07-13 10:21:42,118 - Downloading: Yesterday by Neotic
+2025-07-13 10:21:44,766 - Downloading: return by Neotic
+2025-07-13 10:21:47,220 - Downloading: return by Neotic
+2025-07-13 10:21:49,762 - Downloading: return by Neotic
+2025-07-13 10:21:52,437 - Downloading: Unlit by Neotic
+2025-07-13 10:21:55,056 - Downloading: Unlit by Neotic
+2025-07-13 10:21:57,600 - Downloading: Unlit by Neotic
+2025-07-13 10:22:00,183 - Downloading: petrichor by Neotic
+2025-07-13 10:22:02,843 - Downloading: petrichor by Neotic
+2025-07-13 10:22:05,381 - Downloading: petrichor by Neotic
+2025-07-13 10:22:07,905 - Downloading: Numb by Comodo
+2025-07-13 10:22:10,616 - Downloading: Numb by Comodo
+2025-07-13 10:22:13,575 - Downloading: Numb by Comodo
+2025-07-13 10:22:16,142 - Downloading: Get Lost In The Mind's Ocean by eugenio izzi
+2025-07-13 10:22:18,854 - Downloading: Get Lost In The Mind's Ocean by eugenio izzi
+2025-07-13 10:22:21,630 - Downloading: Get Lost In The Mind's Ocean by eugenio izzi
+2025-07-13 10:22:24,276 - Downloading: Breath by H.1
+2025-07-13 10:22:26,910 - Downloading: Breath by H.1
+2025-07-13 10:22:29,540 - Downloading: Breath by H.1
+2025-07-13 10:22:32,156 - Downloading: Bodies by kudo
+2025-07-13 10:22:34,739 - Downloading: Bodies by kudo
+2025-07-13 10:22:37,363 - Downloading: Bodies by kudo
+2025-07-13 10:22:40,106 - Downloading: Snowflakes by E I S U
+2025-07-13 10:22:42,689 - Downloading: Snowflakes by E I S U
+2025-07-13 10:22:45,183 - Downloading: Snowflakes by E I S U
+2025-07-13 10:22:47,689 - Downloading: Weightless by TABAL
+2025-07-13 10:22:50,372 - Downloading: Weightless by TABAL
+2025-07-13 10:22:53,039 - Downloading: Weightless by TABAL
+2025-07-13 10:22:55,732 - Downloading: Frozen Snow by A[way]
+2025-07-13 10:22:58,414 - Downloading: Frozen Snow by A[way]
+2025-07-13 10:23:01,190 - Downloading: Frozen Snow by A[way]
+2025-07-13 10:23:03,836 - Downloading: Perpetual by goosetaf
+2025-07-13 10:23:06,418 - Downloading: Perpetual by goosetaf
+2025-07-13 10:23:09,094 - Downloading: Perpetual by goosetaf
+2025-07-13 10:23:11,783 - Downloading: Somewhere Else by dryhope
+2025-07-13 10:23:14,451 - Downloading: Somewhere Else by dryhope
+2025-07-13 10:23:17,124 - Downloading: Somewhere Else by dryhope
+2025-07-13 10:23:19,783 - Downloading: What If It All Turned out Fine by Jhove
+2025-07-13 10:23:22,397 - Downloading: What If It All Turned out Fine by Jhove
+2025-07-13 10:23:25,044 - Downloading: What If It All Turned out Fine by Jhove
+2025-07-13 10:23:27,597 - Downloading: Sheets by E I S U
+2025-07-13 10:23:30,161 - Downloading: Sheets by E I S U
+2025-07-13 10:23:33,048 - Downloading: Sheets by E I S U
+2025-07-13 10:23:35,655 - Downloading: Gentle Wind by Kanisan
+2025-07-13 10:23:38,287 - Downloading: Gentle Wind by Kanisan
+2025-07-13 10:23:40,967 - Downloading: Gentle Wind by Kanisan
+2025-07-13 10:23:43,590 - Downloading: Midnight Snack by Purrple Cat
+2025-07-13 10:23:46,168 - Downloading: Midnight Snack by Purrple Cat
+2025-07-13 10:23:48,794 - Downloading: Midnight Snack by Purrple Cat
+2025-07-13 10:23:51,468 - Downloading: replay by heavenly curse
+2025-07-13 10:23:54,134 - Downloading: replay by heavenly curse
+2025-07-13 10:23:56,807 - Downloading: replay by heavenly curse
+2025-07-13 10:23:59,464 - Downloading: The Day You Left by amies
+2025-07-13 10:24:02,484 - Downloading: The Day You Left by amies
+2025-07-13 10:24:05,222 - Downloading: The Day You Left by amies
+2025-07-13 10:24:07,923 - Downloading: Sugar Coat by Purrple Cat
+2025-07-13 10:24:11,158 - Downloading: Sugar Coat by Purrple Cat
+2025-07-13 10:24:13,946 - Downloading: Sugar Coat by Purrple Cat
+2025-07-13 10:24:16,701 - Downloading: Midnight Thoughts by Yasumu
+2025-07-13 10:24:21,392 - Downloading: Midnight Thoughts by Yasumu
+2025-07-13 10:24:24,283 - Downloading: Midnight Thoughts by Yasumu
+2025-07-13 10:24:26,955 - Downloading: Jocelyn Flores by Dontcry
+2025-07-13 10:24:29,693 - Downloading: Jocelyn Flores by Dontcry
+2025-07-13 10:24:32,502 - Downloading: Jocelyn Flores by Dontcry
+2025-07-13 10:24:35,088 - Downloading: So Unfair by Ondi Vil
+2025-07-13 10:24:37,964 - Downloading: So Unfair by Ondi Vil
+2025-07-13 10:24:40,618 - Downloading: So Unfair by Ondi Vil
+2025-07-13 10:24:43,401 - Downloading: pure imagination by shiloh.
+2025-07-13 10:24:46,194 - Downloading: pure imagination by shiloh.
+2025-07-13 10:24:48,972 - Downloading: pure imagination by shiloh.
+2025-07-13 10:27:25,025 - Processing Calling My Phone by Lil Tjay...
+2025-07-13 10:27:43,476 - Downloaded successfully: C:/Users/Dári Andrea/Desktop/test_for_spotify\Best_musics\Lil Tjay - Calling My Phone.mp3
+2025-07-13 10:27:43,477 - Download completed for playlist.
+2025-07-15 09:38:35,184 - Couldn't decode JSON from cache at: .cache
+2025-07-18 18:10:14,937 - Processing Calling My Phone by Lil Tjay...
+2025-07-18 18:10:27,229 - Downloaded successfully: C:/Users/Dári Andrea/Desktop/test\Best_musics\Lil Tjay - Calling My Phone.mp3
+2025-07-18 18:10:27,229 - Download completed for playlist.
