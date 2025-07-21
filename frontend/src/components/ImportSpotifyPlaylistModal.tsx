@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { axiosInstance } from "@/lib/axios";
 
 // Fallback copy function for older browsers or non-HTTPS
 const fallbackCopyTextToClipboard = (text: string, setCopyButtonText: (text: string) => void) => {
@@ -31,20 +30,12 @@ interface ImportSpotifyPlaylistModalProps {
   onClose: () => void;
 }
 
-const steps = [
-  "Authenticate with Spotify"
-];
-
 const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({ open, onClose }) => {
-  const [step, setStep] = useState(0);
-  const [selectedPlaylist, setSelectedPlaylist] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [accessToken, setAccessToken] = useState<string>("");
   const [authUrl, setAuthUrl] = useState<string | null>(null);
-  const [authCode, setAuthCode] = useState("");
-  const [authError, setAuthError] = useState<string | null>(null);
-  const [authCallbackLoading, setAuthCallbackLoading] = useState(false);
-  const [authCallbackError, setAuthCallbackError] = useState<string | null>(null);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [step, setStep] = useState(0);
+  const [downloadPath, setDownloadPath] = useState("");
+  const [selectedPlaylist, setSelectedPlaylist] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<{ [name: string]: string }>({});
   const [playlistsLoading, setPlaylistsLoading] = useState(false);
   const [playlistsError, setPlaylistsError] = useState<string | null>(null);
@@ -52,18 +43,24 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState(false);
   const [copyButtonText, setCopyButtonText] = useState("Copy URL");
-  const [downloadPath, setDownloadPath] = useState("");
 
-  // Placeholder playlists for UI
-  // const mockPlaylists = [
-  //   { id: "1", name: "Chill Vibes" },
-  //   { id: "2", name: "Workout Mix" },
-  //   { id: "3", name: "Top Hits" },
-  // ];
+  // Step 0: Show/copy auth URL
+  // Step 1: User pastes access token
+  // Step 2: User selects playlist and download path
+  // Step 3: Import result
 
-  // Fetch playlists when step changes to 1
+  // Generate the Spotify auth URL (replace with your real client ID and redirect URI)
+  const clientId = "YOUR_SPOTIFY_CLIENT_ID";
+  const redirectUri = "YOUR_REGISTERED_REDIRECT_URI";
+  const scopes = "playlist-read-private playlist-read-collaborative";
+  const generatedAuthUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
+
   React.useEffect(() => {
-    if (step === 1 && accessToken) {
+    setAuthUrl(generatedAuthUrl);
+  }, []);
+
+  React.useEffect(() => {
+    if (step === 2 && accessToken) {
       setPlaylistsLoading(true);
       setPlaylistsError(null);
       fetch(`/api/spotify/playlists?accessToken=${encodeURIComponent(accessToken)}`)
@@ -80,201 +77,70 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
     }
   }, [step, accessToken]);
 
-  // Add: Import playlist and add songs logic
-  const importDownloadedPlaylist = async () => {
-    try {
-      // 1. Fetch the manifest file
-      const manifestRes = await fetch("/songs/imported_songs.json");
-      const importedFilenames = await manifestRes.json(); // Array of filenames
-
-      // 2. Fetch all songs
-      const res = await axiosInstance.get("/songs");
-      const allSongs = res.data;
-
-      // 3. Filter for newly downloaded songs
-      // Assuming your Song object has a filename or fileUrl property
-      const newSongs = allSongs.filter((song: any) =>
-        importedFilenames.some((filename: string) =>
-          song.fileUrl?.endsWith(filename) || song.filename === filename
-        )
-      );
-
-      if (newSongs.length === 0) {
-        alert("No new songs found to import.");
-        return;
-      }
-
-      // 4. Create a new playlist
-      const playlistRes = await axiosInstance.post("/playlists", { name: "Imported from Spotify" });
-      const playlistId = playlistRes.data._id || playlistRes.data.id;
-
-      // 5. Add only new songs to the playlist
-      await axiosInstance.post(`/playlists/${playlistId}/songs`, { songIds: newSongs.map((song: any) => song._id) });
-
-      alert("Playlist imported successfully!");
-    } catch (err: any) {
-      alert("Failed to import playlist: " + (err?.message || err));
-    }
-  };
-
-  // Call importDownloadedPlaylist when importSuccess becomes true and step === 3
-  React.useEffect(() => {
-    if (importSuccess && step === 3) {
-      importDownloadedPlaylist();
-    }
-    // eslint-disable-next-line
-  }, [importSuccess, step]);
-
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background bg-opacity-60">
       <div className="bg-dark-black rounded-lg shadow-lg w-full max-w-md p-6 relative animate-fade-in">
-        {/* Close button */}
-        <button
-          className="absolute top-3 right-3 text-zinc-400 hover:text-white"
-          onClick={onClose}
-        >
-          &times;
-        </button>
-
-        {/* Stepper */}
-        <div className="flex items-center mb-6">
-          {steps.map((label, idx) => (
-            <React.Fragment key={label}>
-              <div className={`flex items-center ${idx === step ? "text-green-400" : "text-zinc-400"}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center border-2 ${idx === step ? "border-green-400" : "border-zinc-600"}`}>{idx + 1}</div>
-                <span className="ml-2 text-sm hidden sm:inline">{label}</span>
-              </div>
-              {idx < steps.length - 1 && <div className="flex-1 h-0.5 bg-zinc-700 mx-2" />}
-            </React.Fragment>
-          ))}
-        </div>
-
-        {/* Step Content */}
+        <button className="absolute top-3 right-3 text-zinc-400 hover:text-white" onClick={onClose}>&times;</button>
+        {/* Step 0: Show/copy auth URL */}
         {step === 0 && (
           <div className="flex flex-col items-center gap-4">
-            <p className="text-white text-center">Enter your email to link your Spotify account:</p>
+            <p className="text-white text-center">1. Copy and open the Spotify authorization URL in your browser:</p>
             <input
-              type="email"
-              className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-              value={authCode}
-              onChange={e => setAuthCode(e.target.value)}
-              placeholder="your@gmail.com"
+              type="text"
+              value={authUrl || ""}
+              readOnly
+              className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none"
+              onFocus={e => e.target.select()}
             />
-            {authError && <p className="text-red-400 text-sm w-full text-left">{authError}</p>}
-            {!authUrl && (
-              <button
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition disabled:opacity-50"
-                onClick={async () => {
-                  setAuthError(null);
-                  if (!authCode || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(authCode)) {
-                    setAuthError("Please enter a valid email address.");
-                    return;
-                  }
-                  setLoading(true);
-                  setAuthError(null);
-                  setAuthUrl(null);
-                  try {
-                    const res = await fetch("/api/spotify/auth", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ code: authCode }),
-                    });
-                    const data = await res.json();
-                    if (data.authUrl) {
-                      setAuthUrl(data.authUrl);
-                    } else {
-                      setAuthError("Could not retrieve Spotify authentication URL.");
-                    }
-                  } catch (err) {
-                    setAuthError("Failed to connect to backend.");
-                  } finally {
-                    setLoading(false);
-                  }
-                }}
-                disabled={loading || !authCode}
-              >
-                {loading ? "Connecting..." : "Connect to Spotify"}
-              </button>
-            )}
-            {authUrl && (
-              <div className="w-full flex flex-col gap-3 items-center">
-                <label className="text-zinc-200 text-sm w-full text-left">Spotify Authorization URL:</label>
-                <input
-                  type="text"
-                  value={authUrl}
-                  readOnly
-                  className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none"
-                  onFocus={e => e.target.select()}
-                />
-                <button
-                  className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded transition text-center w-full"
-                  onClick={() => {
-                    // Try modern clipboard API first
-                    if (navigator.clipboard && window.isSecureContext) {
-                      navigator.clipboard.writeText(authUrl).then(() => {
-                        // Show feedback
-                        setCopyButtonText('Copied!');
-                        setTimeout(() => {
-                          setCopyButtonText('Copy URL');
-                        }, 2000);
-                      }).catch(() => {
-                        // Fallback to old method
-                        fallbackCopyTextToClipboard(authUrl, setCopyButtonText);
-                      });
-                    } else {
-                      // Fallback for older browsers or non-HTTPS
-                      fallbackCopyTextToClipboard(authUrl, setCopyButtonText);
-                    }
-                  }}
-                >
-                  {copyButtonText}
-                </button>
-                <label className="text-zinc-200 text-sm w-full text-left mt-2">Paste the authorization code from Spotify:</label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-                  value={authCode}
-                  onChange={e => setAuthCode(e.target.value)}
-                  placeholder="Enter code here"
-                />
-                <button
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition disabled:opacity-50 w-full"
-                  disabled={!authCode || authCallbackLoading}
-                  onClick={async () => {
-                    setAuthCallbackLoading(true);
-                    setAuthCallbackError(null);
-                    try {
-                      const res = await fetch("/api/spotify/auth", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ code: authCode }),
-                      });
-                      const data = await res.json();
-                      if (data.accessToken) {
-                        setAccessToken(data.accessToken);
-                        setStep(1);
-                      } else {
-                        setAuthCallbackError(data.error || "Failed to complete authentication.");
-                      }
-                    } catch (err) {
-                      setAuthCallbackError("Failed to connect to backend.");
-                    } finally {
-                      setAuthCallbackLoading(false);
-                    }
-                  }}
-                >
-                  {authCallbackLoading ? "Verifying..." : "Continue"}
-                </button>
-                {authCallbackError && <p className="text-red-400 text-sm w-full text-left">{authCallbackError}</p>}
-              </div>
-            )}
+            <button
+              className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded transition text-center w-full"
+              onClick={() => {
+                if (navigator.clipboard && window.isSecureContext) {
+                  navigator.clipboard.writeText(authUrl || "").then(() => {
+                    setCopyButtonText('Copied!');
+                    setTimeout(() => setCopyButtonText('Copy URL'), 2000);
+                  });
+                } else {
+                  fallbackCopyTextToClipboard(authUrl || "", setCopyButtonText);
+                }
+              }}
+            >
+              {copyButtonText}
+            </button>
+            <button
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
+              onClick={() => setStep(1)}
+            >
+              Next
+            </button>
           </div>
         )}
+        {/* Step 1: User pastes access token */}
         {step === 1 && (
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-white text-center">2. After authorizing, paste your Spotify access token here:</p>
+            <input
+              type="text"
+              className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={accessToken}
+              onChange={e => setAccessToken(e.target.value)}
+              placeholder="Paste your access token"
+            />
+            <button
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition"
+              disabled={!accessToken}
+              onClick={() => setStep(2)}
+            >
+              Next
+            </button>
+          </div>
+        )}
+        {/* Step 2: Select playlist and download path */}
+        {step === 2 && (
           <div className="flex flex-col gap-4">
-            <p className="text-white">Select a playlist to import:</p>
+            <p className="text-white">3. Select a playlist to import:</p>
             {playlistsLoading ? (
               <p className="text-zinc-400">Loading playlists...</p>
             ) : playlistsError ? (
@@ -293,18 +159,6 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
                 ))}
               </ul>
             )}
-            <button
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition disabled:opacity-50"
-              disabled={!selectedPlaylist}
-              onClick={() => setStep(2)}
-            >
-              Next
-            </button>
-          </div>
-        )}
-        {step === 2 && (
-          <div className="flex flex-col gap-4">
-            <p className="text-white">Choose a download path for your playlist:</p>
             <input
               type="text"
               className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
@@ -314,7 +168,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
             />
             <button
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition disabled:opacity-50"
-              disabled={!downloadPath || importLoading || !accessToken}
+              disabled={!downloadPath || importLoading || !accessToken || !selectedPlaylist}
               onClick={async () => {
                 setImportLoading(true);
                 setImportError(null);
@@ -348,6 +202,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
             {importError && <p className="text-red-400">{importError}</p>}
           </div>
         )}
+        {/* Step 3: Import result */}
         {step === 3 && (
           <div className="flex flex-col items-center gap-4">
             {importSuccess ? (
