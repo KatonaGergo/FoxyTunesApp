@@ -18,10 +18,6 @@ const uploadToCloudinary = async (file) => {
 	}
 };
 
-// __dirname equivalent in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 export const createSong = async (req, res, next) => {
 	try {
 		if (!req.files || !req.files.audioFile || !req.files.imageFile) {
@@ -33,19 +29,14 @@ export const createSong = async (req, res, next) => {
 		const imageFile = req.files.imageFile;
 
 		// Only upload to Cloudinary
-		const cloudinaryAudioUrl = await uploadToCloudinary(audioFile);
-		const cloudinaryImageUrl = await uploadToCloudinary(imageFile);
-
-		const audioUrl = cloudinaryAudioUrl;
-		const imageUrl = cloudinaryImageUrl;
+		const audioUrl = await uploadToCloudinary(audioFile);
+		const imageUrl = await uploadToCloudinary(imageFile);
 
 		const song = new Song({
 			title,
 			artist,
 			audioUrl,
 			imageUrl,
-			cloudinaryAudioUrl,
-			cloudinaryImageUrl,
 			duration,
 			albumId: albumId || null
 		});
