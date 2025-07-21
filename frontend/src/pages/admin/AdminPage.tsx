@@ -1,11 +1,10 @@
 import { useAuthStore } from "@/stores/useAuthStore";
 import Header from "./components/Header";
 import DashboardStats from "./components/DashboardStats";
-import { Album, Music, FolderOpen } from "lucide-react";
+import { Album, Music } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SongsTabContent from "./components/SongsTabContent";
 import AlbumsTabContent from "./components/AlbumsTabContent";
-import PlaylistsTabContent from "./components/PlaylistsTabContent";
 import { useEffect } from "react";
 import { useMusicStore } from "@/stores/useMusicStore";
 import WindowControls from "@/components/ui/WindowControls";
@@ -42,10 +41,6 @@ const AdminPage = () => {
 						<Album className='mr-2 size-4' />
 						Albums
 					</TabsTrigger>
-					<TabsTrigger value='playlists' className='data-[state=active]:bg-pink-100 pink-theme-text'>
-						<FolderOpen className='mr-2 size-4' />
-						Playlists
-					</TabsTrigger>
 				</TabsList>
 
 				<TabsContent value='songs'>
@@ -53,9 +48,6 @@ const AdminPage = () => {
 				</TabsContent>
 				<TabsContent value='albums'>
 					<AlbumsTabContent />
-				</TabsContent>
-				<TabsContent value='playlists'>
-					<PlaylistsTabContent />
 				</TabsContent>
 			</Tabs>
 		</div>

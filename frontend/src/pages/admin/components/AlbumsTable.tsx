@@ -61,8 +61,8 @@ const AlbumsTable = () => {
 						<TableCell>
 							<img src={album.imageUrl} alt={album.title} className='w-10 h-10 rounded object-cover' />
 						</TableCell>
-						<TableCell className='font-medium'>{album.title}</TableCell>
-						<TableCell>{album.artist}</TableCell>
+						<TableCell className='font-medium pink-theme-text'>{album.title}</TableCell>
+						<TableCell className='pink-theme-text'>{album.artist}</TableCell>
 						<TableCell>
 							<span className='inline-flex items-center gap-1 pink-theme-text'>
 								<Calendar className='h-4 w-4' />
