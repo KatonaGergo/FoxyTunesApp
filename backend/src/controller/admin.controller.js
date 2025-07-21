@@ -28,79 +28,26 @@ export const createSong = async (req, res, next) => {
 			return res.status(400).json({ message: "Please upload all files" });
 		}
 
-		const { title, artist, albumId, duration, adminUpload } = req.body;
+		const { title, artist, albumId, duration } = req.body;
 		const audioFile = req.files.audioFile;
 		const imageFile = req.files.imageFile;
 
-		// Always upload to Cloudinary
+		// Only upload to Cloudinary
 		const cloudinaryAudioUrl = await uploadToCloudinary(audioFile);
 		const cloudinaryImageUrl = await uploadToCloudinary(imageFile);
 
-		// Always save to local file system
-		let originalAudioFilename = audioFile.name;
-		let originalImageFilename = imageFile.name;
-		const frontendSongsDir = path.resolve(__dirname, '../../../frontend/public/songs');
-		if (!fs.existsSync(frontendSongsDir)) {
-			fs.mkdirSync(frontendSongsDir, { recursive: true });
-		}
-		let audioDestPath = path.join(frontendSongsDir, originalAudioFilename);
-		if (fs.existsSync(audioDestPath)) {
-			const ext = path.extname(originalAudioFilename);
-			const base = path.basename(originalAudioFilename, ext);
-			let counter = 1;
-			let newFilename;
-			do {
-				newFilename = `${base}_${counter}${ext}`;
-				audioDestPath = path.join(frontendSongsDir, newFilename);
-				counter++;
-			} while (fs.existsSync(audioDestPath));
-			originalAudioFilename = newFilename;
-		}
-		await audioFile.mv(audioDestPath);
-		const localAudioUrl = `/songs/${originalAudioFilename}`;
-
-		const frontendArtworkDir = path.resolve(__dirname, '../../../frontend/public/song_artwork');
-		if (!fs.existsSync(frontendArtworkDir)) {
-			fs.mkdirSync(frontendArtworkDir, { recursive: true });
-		}
-		let imageDestPath = path.join(frontendArtworkDir, originalImageFilename);
-		if (fs.existsSync(imageDestPath)) {
-			const ext = path.extname(originalImageFilename);
-			const base = path.basename(originalImageFilename, ext);
-			let counter = 1;
-			let newFilename;
-			do {
-				newFilename = `${base}_${counter}${ext}`;
-				imageDestPath = path.join(frontendArtworkDir, newFilename);
-				counter++;
-			} while (fs.existsSync(imageDestPath));
-			originalImageFilename = newFilename;
-		}
-		await imageFile.mv(imageDestPath);
-		const localImageUrl = `/song_artwork/${originalImageFilename}`;
-
-		// Decide which URL is the main one
-		let audioUrl, imageUrl;
-		if (adminUpload === 'true' || adminUpload === true) {
-			audioUrl = cloudinaryAudioUrl;
-			imageUrl = cloudinaryImageUrl;
-		} else {
-			audioUrl = localAudioUrl;
-			imageUrl = localImageUrl;
-		}
+		const audioUrl = cloudinaryAudioUrl;
+		const imageUrl = cloudinaryImageUrl;
 
 		const song = new Song({
 			title,
 			artist,
 			audioUrl,
 			imageUrl,
-			localAudioUrl,
-			localImageUrl,
 			cloudinaryAudioUrl,
 			cloudinaryImageUrl,
 			duration,
-			albumId: albumId || null,
-			localFilename: originalAudioFilename
+			albumId: albumId || null
 		});
 
 		await song.save();
@@ -147,29 +94,9 @@ export const createAlbum = async (req, res, next) => {
 		let imageUrl = '';
 		let cloudinaryImageUrl = null;
 		if (imageFile) {
-			let originalImageFilename = imageFile.name;
-			const frontendArtworkDir = path.resolve(__dirname, '../../../frontend/public/song_artwork');
-			if (!fs.existsSync(frontendArtworkDir)) {
-				fs.mkdirSync(frontendArtworkDir, { recursive: true });
-			}
-			let imageDestPath = path.join(frontendArtworkDir, originalImageFilename);
-			if (fs.existsSync(imageDestPath)) {
-				const ext = path.extname(originalImageFilename);
-				const base = path.basename(originalImageFilename, ext);
-				let counter = 1;
-				let newFilename;
-				do {
-					newFilename = `${base}_${counter}${ext}`;
-					imageDestPath = path.join(frontendArtworkDir, newFilename);
-					counter++;
-				} while (fs.existsSync(imageDestPath));
-				originalImageFilename = newFilename;
-			}
-			await imageFile.mv(imageDestPath);
-			imageUrl = `/song_artwork/${originalImageFilename}`;
-
-			// Always upload to Cloudinary
+			// Only upload to Cloudinary
 			cloudinaryImageUrl = await uploadToCloudinary(imageFile);
+			imageUrl = cloudinaryImageUrl;
 		}
 
 		const album = new Album({
@@ -208,29 +135,12 @@ export const updateSongArtwork = async (req, res, next) => {
 			return res.status(400).json({ message: "Please upload an image file" });
 		}
 		const imageFile = req.files.imageFile;
-		let originalImageFilename = imageFile.name;
-		const frontendArtworkDir = path.resolve(__dirname, '../../../frontend/public/song_artwork');
-		if (!fs.existsSync(frontendArtworkDir)) {
-			fs.mkdirSync(frontendArtworkDir, { recursive: true });
-		}
-		let imageDestPath = path.join(frontendArtworkDir, originalImageFilename);
-		if (fs.existsSync(imageDestPath)) {
-			const ext = path.extname(originalImageFilename);
-			const base = path.basename(originalImageFilename, ext);
-			let counter = 1;
-			let newFilename;
-			do {
-				newFilename = `${base}_${counter}${ext}`;
-				imageDestPath = path.join(frontendArtworkDir, newFilename);
-				counter++;
-			} while (fs.existsSync(imageDestPath));
-			originalImageFilename = newFilename;
-		}
-		await imageFile.mv(imageDestPath);
-		const imageUrl = `/song_artwork/${originalImageFilename}`;
+		// Only upload to Cloudinary
+		const cloudinaryImageUrl = await uploadToCloudinary(imageFile);
+		const imageUrl = cloudinaryImageUrl;
 		const song = await Song.findByIdAndUpdate(
 			id,
-			{ imageUrl },
+			{ imageUrl, cloudinaryImageUrl },
 			{ new: true }
 		);
 		if (!song) {
@@ -250,29 +160,12 @@ export const updateAlbumArtwork = async (req, res, next) => {
 			return res.status(400).json({ message: "Please upload an image file" });
 		}
 		const imageFile = req.files.imageFile;
-		let originalImageFilename = imageFile.name;
-		const frontendArtworkDir = path.resolve(__dirname, '../../../frontend/public/song_artwork');
-		if (!fs.existsSync(frontendArtworkDir)) {
-			fs.mkdirSync(frontendArtworkDir, { recursive: true });
-		}
-		let imageDestPath = path.join(frontendArtworkDir, originalImageFilename);
-		if (fs.existsSync(imageDestPath)) {
-			const ext = path.extname(originalImageFilename);
-			const base = path.basename(originalImageFilename, ext);
-			let counter = 1;
-			let newFilename;
-			do {
-				newFilename = `${base}_${counter}${ext}`;
-				imageDestPath = path.join(frontendArtworkDir, newFilename);
-				counter++;
-			} while (fs.existsSync(imageDestPath));
-			originalImageFilename = newFilename;
-		}
-		await imageFile.mv(imageDestPath);
-		const imageUrl = `/song_artwork/${originalImageFilename}`;
+		// Only upload to Cloudinary
+		const cloudinaryImageUrl = await uploadToCloudinary(imageFile);
+		const imageUrl = cloudinaryImageUrl;
 		const album = await Album.findByIdAndUpdate(
 			id,
-			{ imageUrl },
+			{ imageUrl, cloudinaryImageUrl },
 			{ new: true }
 		);
 		if (!album) {

@@ -13,10 +13,6 @@ const songSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    localImageUrl: {
-        type: String,
-        required: false
-    },
     cloudinaryImageUrl: {
         type: String,
         required: false
@@ -24,10 +20,6 @@ const songSchema = new mongoose.Schema({
     audioUrl: {
         type: String,
         required: true
-    },
-    localAudioUrl: {
-        type: String,
-        required: false
     },
     cloudinaryAudioUrl: {
         type: String,
