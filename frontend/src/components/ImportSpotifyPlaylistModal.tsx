@@ -50,8 +50,8 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
   // Step 3: Import result
 
   // Generate the Spotify auth URL (replace with your real client ID and redirect URI)
-  const clientId = "YOUR_SPOTIFY_CLIENT_ID";
-  const redirectUri = "YOUR_REGISTERED_REDIRECT_URI";
+  const clientId = import.meta.env.CLIENT_ID;
+  const redirectUri = import.meta.env.REDIRECT_URL;
   const scopes = "playlist-read-private playlist-read-collaborative";
   const generatedAuthUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
 
