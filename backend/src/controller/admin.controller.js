@@ -28,7 +28,7 @@ export const createSong = async (req, res, next) => {
 			return res.status(400).json({ message: "Please upload all files" });
 		}
 
-		const { title, artist, albumId, duration } = req.body;
+		const { title, artist, albumId, duration, adminUpload } = req.body;
 		const audioFile = req.files.audioFile;
 		const imageFile = req.files.imageFile;
 
@@ -57,7 +57,7 @@ export const createSong = async (req, res, next) => {
 			originalAudioFilename = newFilename;
 		}
 		await audioFile.mv(audioDestPath);
-		const audioUrl = `/songs/${originalAudioFilename}`;
+		const localAudioUrl = `/songs/${originalAudioFilename}`;
 
 		const frontendArtworkDir = path.resolve(__dirname, '../../../frontend/public/song_artwork');
 		if (!fs.existsSync(frontendArtworkDir)) {
@@ -77,13 +77,25 @@ export const createSong = async (req, res, next) => {
 			originalImageFilename = newFilename;
 		}
 		await imageFile.mv(imageDestPath);
-		const imageUrl = `/song_artwork/${originalImageFilename}`;
+		const localImageUrl = `/song_artwork/${originalImageFilename}`;
+
+		// Decide which URL is the main one
+		let audioUrl, imageUrl;
+		if (adminUpload === 'true' || adminUpload === true) {
+			audioUrl = cloudinaryAudioUrl;
+			imageUrl = cloudinaryImageUrl;
+		} else {
+			audioUrl = localAudioUrl;
+			imageUrl = localImageUrl;
+		}
 
 		const song = new Song({
 			title,
 			artist,
 			audioUrl,
 			imageUrl,
+			localAudioUrl,
+			localImageUrl,
 			cloudinaryAudioUrl,
 			cloudinaryImageUrl,
 			duration,
