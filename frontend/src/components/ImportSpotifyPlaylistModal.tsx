@@ -44,8 +44,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
   const [authError, setAuthError] = useState<string | null>(null);
   const [authCallbackLoading, setAuthCallbackLoading] = useState(false);
   const [authCallbackError, setAuthCallbackError] = useState<string | null>(null);
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState<string | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<{ [name: string]: string }>({});
   const [playlistsLoading, setPlaylistsLoading] = useState(false);
   const [playlistsError, setPlaylistsError] = useState<string | null>(null);
@@ -64,10 +63,10 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
 
   // Fetch playlists when step changes to 1
   React.useEffect(() => {
-    if (step === 1 && email) {
+    if (step === 1 && accessToken) {
       setPlaylistsLoading(true);
       setPlaylistsError(null);
-      fetch(`/api/spotify/playlists?userId=${encodeURIComponent(email)}`)
+      fetch(`/api/spotify/playlists?accessToken=${encodeURIComponent(accessToken)}`)
         .then(res => res.json())
         .then(data => {
           if (data.playlists) {
@@ -79,7 +78,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
         .catch(() => setPlaylistsError("Failed to fetch playlists."))
         .finally(() => setPlaylistsLoading(false));
     }
-  }, [step, email]);
+  }, [step, accessToken]);
 
   // Add: Import playlist and add songs logic
   const importDownloadedPlaylist = async () => {
@@ -159,19 +158,18 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
             <input
               type="email"
               className="w-full px-3 py-2 rounded bg-light-black text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              value={authCode}
+              onChange={e => setAuthCode(e.target.value)}
               placeholder="your@gmail.com"
             />
-            {emailError && <p className="text-red-400 text-sm w-full text-left">{emailError}</p>}
-            {authError && <p className="text-red-400 text-sm">{authError}</p>}
+            {authError && <p className="text-red-400 text-sm w-full text-left">{authError}</p>}
             {!authUrl && (
               <button
                 className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition disabled:opacity-50"
                 onClick={async () => {
-                  setEmailError(null);
-                  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-                    setEmailError("Please enter a valid email address.");
+                  setAuthError(null);
+                  if (!authCode || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(authCode)) {
+                    setAuthError("Please enter a valid email address.");
                     return;
                   }
                   setLoading(true);
@@ -181,7 +179,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
                     const res = await fetch("/api/spotify/auth", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ userId: email }),
+                      body: JSON.stringify({ code: authCode }),
                     });
                     const data = await res.json();
                     if (data.authUrl) {
@@ -195,7 +193,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
                     setLoading(false);
                   }
                 }}
-                disabled={loading || !email}
+                disabled={loading || !authCode}
               >
                 {loading ? "Connecting..." : "Connect to Spotify"}
               </button>
@@ -248,13 +246,14 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
                     setAuthCallbackLoading(true);
                     setAuthCallbackError(null);
                     try {
-                      const res = await fetch("/api/spotify/auth/callback", {
+                      const res = await fetch("/api/spotify/auth", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ code: authCode, userId: email }),
+                        body: JSON.stringify({ code: authCode }),
                       });
                       const data = await res.json();
-                      if (data.success) {
+                      if (data.accessToken) {
+                        setAccessToken(data.accessToken);
                         setStep(1);
                       } else {
                         setAuthCallbackError(data.error || "Failed to complete authentication.");
@@ -315,7 +314,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
             />
             <button
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition disabled:opacity-50"
-              disabled={!downloadPath || importLoading}
+              disabled={!downloadPath || importLoading || !accessToken}
               onClick={async () => {
                 setImportLoading(true);
                 setImportError(null);
@@ -325,7 +324,7 @@ const ImportSpotifyPlaylistModal: React.FC<ImportSpotifyPlaylistModalProps> = ({
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                      userId: email,
+                      accessToken,
                       playlistName: Object.keys(playlists).find(name => playlists[name] === selectedPlaylist),
                       downloadPath,
                     }),
