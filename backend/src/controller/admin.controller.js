@@ -1,9 +1,22 @@
 import { Song } from "../models/song.model.js";
 import { Album } from "../models/album.model.js";
+import cloudinary from "../lib/cloudinary.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
+const uploadToCloudinary = async (file) => {
+	try {
+		const result = await cloudinary.uploader.upload(file.tempFilePath, {
+			resource_type: "auto",
+		});
+		return result.secure_url;
+	} catch (error) {
+		console.log("Error in uploadToCloudinary", error);
+		throw new Error("Error uploading to cloudinary");
+	}
+};
 
 // __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -15,9 +28,13 @@ export const createSong = async (req, res, next) => {
 			return res.status(400).json({ message: "Please upload all files" });
 		}
 
-		const { title, artist, albumId, duration } = req.body;
+		const { title, artist, albumId, duration, useCloudinary } = req.body;
 		const audioFile = req.files.audioFile;
 		const imageFile = req.files.imageFile;
+
+		// Default to Cloudinary unless useCloudinary is explicitly 'false' or false
+		cloudinaryAudioUrl = await uploadToCloudinary(audioFile);
+		cloudinaryImageUrl = await uploadToCloudinary(imageFile);
 
 		// Save the original filename for local use
 		let originalAudioFilename = audioFile.name;
@@ -70,6 +87,8 @@ export const createSong = async (req, res, next) => {
 			artist,
 			audioUrl,
 			imageUrl,
+			cloudinaryAudioUrl,
+			cloudinaryImageUrl,
 			duration,
 			albumId: albumId || null,
 			localFilename: originalAudioFilename
@@ -114,10 +133,15 @@ export const deleteSong = async (req, res, next) => {
 
 export const createAlbum = async (req, res, next) => {
 	try {
-		const { title, artist, releaseYear } = req.body;
+		const { title, artist, releaseYear, useCloudinary } = req.body;
 		const { imageFile } = req.files;
 
 		let imageUrl = '';
+		let cloudinaryImageUrl = null;
+		let doCloudinary = true;
+		if (useCloudinary === 'false' || useCloudinary === false) {
+			doCloudinary = false;
+		}
 		if (imageFile) {
 			let originalImageFilename = imageFile.name;
 			const frontendArtworkDir = path.resolve(__dirname, '../../../frontend/public/song_artwork');
@@ -139,12 +163,17 @@ export const createAlbum = async (req, res, next) => {
 			}
 			await imageFile.mv(imageDestPath);
 			imageUrl = `/song_artwork/${originalImageFilename}`;
+
+			if (doCloudinary) {
+				cloudinaryImageUrl = await uploadToCloudinary(imageFile);
+			}
 		}
 
 		const album = new Album({
 			title,
 			artist,
 			imageUrl,
+			cloudinaryImageUrl,
 			releaseYear,
 		});
 

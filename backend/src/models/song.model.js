@@ -13,9 +13,17 @@ const songSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    cloudinaryImageUrl: {
+        type: String,
+        required: false
+    },
     audioUrl: {
         type: String,
         required: true
+    },
+    cloudinaryAudioUrl: {
+        type: String,
+        required: false
     },
     duration: {
         type: Number,
