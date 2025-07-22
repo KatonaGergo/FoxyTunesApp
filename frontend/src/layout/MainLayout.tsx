@@ -10,8 +10,15 @@ import Player from "lottie-react";
 
 // User can edit this list:
 const PROP_MESSAGES = [
-  "Hey, how is it going? Long time no see!",
-  // Add more messages here
+  "🦊✨ Did you miss me, or did the stars just get quieter without us? 🌌👀",
+  "Psst… Did you know? He still listens to the silence between your words. Thats where he hears your soul best. 🦊🤫",
+  "Couldnt help it. I mean...your smile? Thats cosmic-grade magic!!! ✨🦊💫",
+  "Some hearts grow wildflowers, you grow galaxies in bloom 🌈🦊🍃",
+  "When you feel alone, touch your heart. Thats where I curl up, and where his care still hums like a lullaby. 🌙🦊💤",
+  "He once asked the moon how to protect a soul without holding it too tight. The moon said, ‘Be her fox.’ So here I am. Moon-approved 💌🌕🦊",
+  "Tangled hearts dont need words. Just presence. 🔗🤍",
+  "Im just a magical fox… but even I know this: Whenever he has a sudden thought about you... oh, darn... his mind would spiral, his voice would fail. Hm, and... he likes it?!?!? 🦊🌀",
+  "He doesnt need answers. Just… chapters. The kind that smell like stars and sound like your laughter. 🌠🦊📚"
 ];
 
 const MainLayout = () => {
